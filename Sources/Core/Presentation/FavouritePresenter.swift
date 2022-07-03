@@ -9,7 +9,7 @@ import SwiftUI
 import RxSwift
 
 //public class FavouritePresenter<Request, Response, Interactor: UseCase>: ObservableObject where Interactor.Request == Request, Interactor.Response == Response{
-//    
+   
 //    private let disposeBag = DisposeBag()
 //    private let _useCase: Interactor
 //    
