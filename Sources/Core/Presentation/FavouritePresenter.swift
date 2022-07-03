@@ -12,7 +12,7 @@ import RxSwift
    
 //    private let disposeBag = DisposeBag()
 //    private let _useCase: Interactor
-//    
+   
 //    @Published public var list: Response?
 //    @Published public var errorMessage: String = ""
 //    @Published public var isLoading: Bool = false
