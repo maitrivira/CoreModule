@@ -13,7 +13,7 @@ public protocol LocaleDataSource {
     
     func getRestaurants() -> Observable<[Response]>
     func getRestaurant(request id: Int) -> Observable<Bool>
-    func addRestaurant(entities: Response) -> Observable<Bool>
+    func addRestaurant(entities: Request) -> Observable<Bool>
     func removeRestaurant(id: Int) -> Observable<Bool>
     
 }
