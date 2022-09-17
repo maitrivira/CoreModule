@@ -12,7 +12,7 @@ public protocol LocaleDataSource {
     associatedtype Response
     
     func lists() -> Observable<[Response]>
-    func list(request: id: Int) -> Observable<Bool>
+    func list(request id: Int) -> Observable<Bool>
     func add(entities: Request) -> Observable<Bool>
     func remove(id: Int) -> Observable<Bool>
     
