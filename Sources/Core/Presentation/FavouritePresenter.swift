@@ -36,8 +36,10 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
                 self.list = result
             } onError: { error in
                 self.errorMessage = error.localizedDescription
+                self.isError = true
+                self.isLoading = false
             } onCompleted: {
-                self.loadingState = false
+                self.isLoading = false
             }.disposed(by: disposeBag)
     }
     
