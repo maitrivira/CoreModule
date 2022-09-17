@@ -8,15 +8,37 @@
 import SwiftUI
 import RxSwift
 
-//public class FavouritePresenter<Request, Response, Interactor: UseCase>: ObservableObject where Interactor.Request == Request, Interactor.Response == Response{
+public class FavouritePresenter<Request, Response, Interactor: UseCase>: ObservableObject where Interactor.Request == Request, Interactor.Response == Response{
    
-//    private let disposeBag = DisposeBag()
-//    private let _useCase: Interactor
+    private let disposeBag = DisposeBag()
+    private let _useCase: Interactor
    
-//    @Published public var list: Response?
-//    @Published public var errorMessage: String = ""
-//    @Published public var isLoading: Bool = false
-//    @Published public var isError: Bool = false
-//    @Published public var isSaved: Bool = false
-//    
-//}
+    @Published public var list: [RestaurantModel] = []
+    @Published public var errorMessage: String = ""
+    @Published public var isLoading: Bool = false
+    @Published public var isError: Bool = false
+    @Published public var isSaved: Bool = false
+    
+    public init(useCase: Interactor) {
+        _useCase = useCase
+    }
+    
+    func containsId(of id: String) -> Bool {
+        let data = list.contains { $0.id == id }
+        return data
+    }
+    
+    func getFavourite(request: Request?) {
+        isLoading = true
+        _useCase.execute(request: request)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self.list = result
+            } onError: {
+                self.errorMessage = error.localizedDescription
+            } onCompleted: {
+                self.loadingState = false
+            }.disposed(by: disposeBag)
+    }
+    
+}
