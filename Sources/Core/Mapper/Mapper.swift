@@ -15,7 +15,7 @@ public protocol Mapper {
     associatedtype Domain
     
     func transformResponseToEntity(response: Response) -> Entity
-    func transformModelToEntity(response: Request) -> Entity
+    func transformModelToEntity(request: Request) -> Entity
     func transformEntityToDomain(entity: Entity) -> Domain
     func transformResponseToDomain(response: Response) -> Domain
     func transformDomainToEntity(domain: Domain) -> Entity
