@@ -23,10 +23,10 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
         _useCase = useCase
     }
     
-    func containsId(of id: String) -> Bool {
-        let data = list.contains { $0.id == id }
-        return data
-    }
+//    func containsId(of id: String) -> Bool {
+//        let data = list.contains { $0.id == id }
+//        return data
+//    }
     
     func getFavourite(request: Request?) {
         isLoading = true
