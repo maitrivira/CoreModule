@@ -34,7 +34,7 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
             .observe(on: MainScheduler.instance)
             .subscribe { result in
                 self.list = result
-            } onError: {
+            } onError: { error in
                 self.errorMessage = error.localizedDescription
             } onCompleted: {
                 self.loadingState = false
