@@ -13,7 +13,7 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
     private let disposeBag = DisposeBag()
     private let _useCase: Interactor
    
-    @Published public var list: [RestaurantModel] = []
+    @Published public var list: [Response] = []
     @Published public var errorMessage: String = ""
     @Published public var isLoading: Bool = false
     @Published public var isError: Bool = false
