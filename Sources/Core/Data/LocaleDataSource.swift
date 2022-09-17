@@ -11,9 +11,9 @@ public protocol LocaleDataSource {
     associatedtype Request
     associatedtype Response
     
-    func getRestaurants() -> Observable<[Response]>
-    func getRestaurant(request id: Int) -> Observable<Bool>
-    func addRestaurant(entities: Request) -> Observable<Bool>
-    func removeRestaurant(id: Int) -> Observable<Bool>
+    func lists() -> AnyPublisher<[Response], Error>
+    func list(request: id: Int) -> AnyPublisher<Bool, Error>
+    func add(entities: Request) -> AnyPublisher<Bool, Error>
+    func remove(id: Int) -> AnyPublisher<Bool, Error>
     
 }
