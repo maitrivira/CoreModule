@@ -7,6 +7,9 @@
 
 import SwiftUI
 import RxSwift
+import Core
+import Restaurant
+import DetailRestaurant
 
 public class DetailPresenter<DetailRestoUseCase: UseCase, FavUseCase: UseCase>: ObservableObject
 where
@@ -30,5 +33,20 @@ where
     public init(detailUseCase: DetailRestoUseCase, favUseCase: FavUseCase) {
         _detailUseCase = detailUseCase
         _favUseCase = favUseCase
+    }
+    
+    public func getList(request: Request?) {
+        isLoading = true
+        _useCase.execute(request: request)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self.list = result
+            } onError: { error in
+                self.errorMessage = error.localizedDescription
+                self.isError = true
+                self.isLoading = false
+            } onCompleted: {
+                self.isLoading = false
+            }.disposed(by: disposeBag)
     }
 }
