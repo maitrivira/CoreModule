@@ -21,8 +21,4 @@ where R.Request == Request, R.Response == Response {
         _repository.execute(request: request)
     }
     
-    public func add(of data: Request?) -> Observable<Bool> {
-        _repository.add(of: data)
-    }
-    
 }
