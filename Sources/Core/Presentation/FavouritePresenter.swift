@@ -23,21 +23,14 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
         _useCase = useCase
     }
     
-//    func containsId(of id: String) -> Bool {
-//        let data = list.contains { $0.id == id }
-//        return data
-//    }
-    
-    func getFavourite(request: Request?) {
+    func updateFavorite(of data: Request?) {
         isLoading = true
-        _useCase.execute(request: request)
+        _useCase.execute(request: data)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
-                self.list = result
-            } onError: { error in
-                self.errorMessage = error.localizedDescription
-                self.isError = true
-                self.isLoading = false
+                self.isSaved = result
+            } onError: { _ in
+                self.errorMessage = "Failed to save detail restaurant"
             } onCompleted: {
                 self.isLoading = false
             }.disposed(by: disposeBag)
