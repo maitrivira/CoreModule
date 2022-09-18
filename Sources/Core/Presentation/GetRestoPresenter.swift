@@ -37,5 +37,18 @@ public class GetRestoPresenter<Request, Response, Interactor: UseCase>: Observab
                 self.isLoading = false
             }.disposed(by: disposeBag)
     }
+    
+    func addDetailRestaurant(of data: Request?) {
+        isLoading = true
+        _useCase.add(of: data)
+            .observe(on: MainScheduler.instance)
+            .subscribe { result in
+                self.isSaved = result
+            } onError: { _ in
+                self.errorMessage = "Failed to save detail restaurant"
+            } onCompleted: {
+                self.isLoading = false
+            }.disposed(by: disposeBag)
+    }
 
 }

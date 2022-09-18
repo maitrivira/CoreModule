@@ -12,5 +12,6 @@ public protocol Repository {
     associatedtype Response
     
     func execute(request: Request?) -> Observable<Response>
+    func add(of data: Request?) -> Observable<Bool>
     
 }
