@@ -28,7 +28,7 @@ public class FavouritePresenter<Request, Response, Interactor: UseCase>: Observa
         _useCase.execute(request: data)
             .observe(on: MainScheduler.instance)
             .subscribe { result in
-                self.isSaved = result
+//                self.isSaved = result
             } onError: { _ in
                 self.errorMessage = "Failed to save detail restaurant"
             } onCompleted: {
