@@ -12,8 +12,10 @@ public class GetRestoPresenter<Request, Response, Interactor: UseCase>: Observab
 
     private let disposeBag = DisposeBag()
     private let _useCase: Interactor
-
+    private let _keyStoreFavoriteResto: String = "FavoriteResto"
+    @Published public var favoriteResto: [String] = []
     @Published public var list: Response?
+    @Published public var listFavorite: Response?
     @Published public var errorMessage: String = ""
     @Published public var isLoading: Bool = false
     @Published public var isError: Bool = false
@@ -21,6 +23,7 @@ public class GetRestoPresenter<Request, Response, Interactor: UseCase>: Observab
 
     public init(useCase: Interactor) {
         _useCase = useCase
+        getFavoriteFromUD()
     }
 
     public func getList(request: Request?) {
@@ -36,6 +39,10 @@ public class GetRestoPresenter<Request, Response, Interactor: UseCase>: Observab
             } onCompleted: {
                 self.isLoading = false
             }.disposed(by: disposeBag)
+    }
+    
+    public func getFavoriteFromUD() {
+        favoriteResto = UserDefaults.standard.object(forKey: self._keyStoreFavoriteResto) as? [String] ?? [""]
     }
 
 }
