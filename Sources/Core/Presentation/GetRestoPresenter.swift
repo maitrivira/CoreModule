@@ -21,7 +21,6 @@ public class GetRestoPresenter<Request, Response, Interactor: UseCase>: Observab
 
     public init(useCase: Interactor) {
         _useCase = useCase
-        getFavoriteFromUD()
     }
 
     public func getList(request: Request?) {

@@ -32,6 +32,7 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
             .observe(on: MainScheduler.instance)
             .subscribe { result in
                 self.list = result
+                filterFavorite()
             } onError: { error in
                 self.errorMessage = error.localizedDescription
                 self.isError = true
@@ -39,6 +40,17 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
             } onCompleted: {
                 self.isLoading = false
             }.disposed(by: disposeBag)
+    }
+    
+    func filterFavorite() {
+        for data in list {
+            for id in favoriteResto {
+                if data.id == id {
+                    listFavorite.append(data)
+                }
+            }
+        }
+        print("data favorite", listFavorite)
     }
     
     public func getFavoriteFromUD() {
