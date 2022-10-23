@@ -14,7 +14,7 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
     private let _useCase: Interactor
     private let _keyStoreFavoriteResto: String = "FavoriteResto"
     @Published public var favoriteResto: [String] = []
-    @Published public var listFavorite = []
+    @Published public var listFavorite: [Response] = []
     @Published public var list: [Response] = []
     @Published public var errorMessage: String = ""
     @Published public var isLoading: Bool = false
