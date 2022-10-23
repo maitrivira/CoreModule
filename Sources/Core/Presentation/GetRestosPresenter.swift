@@ -23,6 +23,7 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
 
     public init(useCase: Interactor) {
         _useCase = useCase
+        getFavoriteFromUD()
     }
 
     public func getList(request: Request?) {
