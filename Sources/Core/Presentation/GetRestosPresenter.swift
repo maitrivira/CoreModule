@@ -38,13 +38,6 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
                 self.isLoading = false
             } onCompleted: {
                 self.isLoading = false
-                for data in favoriteResto {
-                    for dataList in list {
-                        if dataList.id == data {
-                            listFavorite.append(dataList)
-                        }
-                    }
-                }
             }.disposed(by: disposeBag)
     }
     
