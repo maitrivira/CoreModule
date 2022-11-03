@@ -38,10 +38,10 @@ public class GetRestosPresenter<Request, Response, Interactor: UseCase>: Observa
                 self.isLoading = false
             } onCompleted: {
                 self.isLoading = false
-                for data in presenter.favoriteResto {
-                    for dataList in presenter.list {
+                for data in favoriteResto {
+                    for dataList in list {
                         if dataList.id == data {
-                            presenter.listFavorite.append(dataList)
+                            listFavorite.append(dataList)
                         }
                     }
                 }
